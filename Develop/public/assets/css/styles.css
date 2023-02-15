@@ -8,6 +8,9 @@ body {
 .save-note {
   display: none;
 }
+.show-note {
+  display: inline
+}
 
 .icons i {
   margin-left: 15px;
