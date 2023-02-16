@@ -85,6 +85,9 @@ app.post('/api/notes', (req, res) => {
 app.get('/notes', (req, res) =>
   res.sendFile(path.join(__dirname, 'public/notes.html'))
 );
+app.get('/notetaker.JPG', (req, res) =>
+  res.sendFile(path.join(__dirname, 'public/assets/images/notetaker.JPG'))
+);
 
 app.get('/*', (req, res) =>
   res.sendFile(path.join(__dirname, 'public/index.html'))

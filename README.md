@@ -1,5 +1,5 @@
 # Note Taker
-<img src=">
+<img src="https://img.shields.io/github/license/teriannephillips/Note-Taker">
 
 ---
 ## Table of Contents
@@ -25,7 +25,7 @@ This application is hosted on Heroku as [Note Taker](https://url)
 
 ---
 ## Screenshot
-<img src="./develop/public/assets/images/notetaker.JPG">
+<img src="localhost:3001/notetaker.JPG">
 
 
 [BACK TO TOP](#top)
