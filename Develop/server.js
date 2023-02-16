@@ -15,7 +15,7 @@ app.get('/', (req, res) => res.send('Navigate to /notes or /*'));
 app.get('/api/notes', (req, res) => {
   res.sendFile(path.join(__dirname, 'db/db.json'))
   console.info(`${req.method} request received to pull notes`);
-  
+
 })
 app.post('/api/notes', (req, res) => {
   // Read the existing notes from the db.json file
@@ -42,10 +42,44 @@ app.post('/api/notes', (req, res) => {
         res.status(500).send('Error saving note');
         return;
       }
-
       // Send a response back to the client to indicate that the note was saved successfully
       res.status(201).json(newNote);
     });
+  });
+});
+    // API DELETE request
+    app.delete("/api/notes/:id", (req, res) => {
+
+      // Fetched id to delete
+      let noteId = req.params.id.toString();
+      
+      console.log(`DELETE note request for noteId: ${noteId}`);
+
+      // Read data from 'db.json' file
+      // let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+      const filePath = path.join(__dirname, 'db/db.json');
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error reading notes file');
+      return;
+    }
+
+    // Parse the JSON data from the file into an array of note objects
+    const notes = JSON.parse(data);
+    for (i = 0; i < notes.length; i++ ) {
+
+      if (notes[i].id == noteId) {
+        notes.splice(i,1)
+      }
+    }
+      // Write notes data back to the 'db.json' file
+      fs.writeFileSync('./db/db.json', JSON.stringify(notes));
+      
+      console.log(`Successfully deleted note id : ${noteId}`);
+
+      //Send response
+      res.json(data);
   });
 });
 app.get('/notes', (req, res) =>

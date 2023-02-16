@@ -3,6 +3,7 @@ let noteText;
 let saveNoteBtn;
 let newNoteBtn;
 let noteList;
+let activeNoteList;
 
 if (window.location.pathname === '/notes') {
   noteTitle = document.querySelector('.note-title');
@@ -104,6 +105,7 @@ const getNotes = () =>
   // Sets the activeNote and displays it
   const handleNoteView = (e) => {
     e.preventDefault();
+    console.log('success!')
     activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
     renderActiveNote();
   };
@@ -127,6 +129,7 @@ const getNotes = () =>
     let jsonNotes = await notes.json();
     if (window.location.pathname === '/notes') {
       noteList.forEach((el) => (el.innerHTML = ''));
+      activeNoteList = document.querySelectorAll('.list-group-item');
     }
 
     let noteListItems = [];
@@ -184,14 +187,8 @@ const getNotes = () =>
     newNoteBtn.addEventListener('click', handleNewNoteView);
     noteTitle.addEventListener('keyup', handleRenderSaveBtn);
     noteText.addEventListener('keyup', handleRenderSaveBtn);
+    
   }
-  noteText.addEventListener("input", function () {
-    if (noteTitle.value.trim() === "" && noteText.value.trim() === "") {
-      hide(saveNoteBtn)
-    } else {
-      show(saveNoteBtn);
-    }
-  });
-  //hide(saveNoteBtn);
-  //noteTitle.addEventListener('note-textarea', show(saveNoteBtn));
+ 
   getAndRenderNotes();
+
