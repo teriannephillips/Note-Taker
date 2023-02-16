@@ -1,5 +1,5 @@
 # Note Taker
-<img src="https://img.shields.io/github/license/teriannephillips/Note-Taker">
+<img src=">
 
 ---
 ## Table of Contents
