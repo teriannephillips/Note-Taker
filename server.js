@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 
 const app = express();
-const PORT = 3001;
+let port = process.env.PORT;
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
@@ -93,6 +93,6 @@ app.get('/*', (req, res) =>
   res.sendFile(path.join(__dirname, 'public/index.html'))
 );
 
-app.listen(PORT, () =>
-  console.log(`server is running at http://localhost:${PORT}`)
+app.listen(port, () =>
+  console.log(`server is running at Heroku`)
 );
